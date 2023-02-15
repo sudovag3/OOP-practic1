@@ -14,7 +14,9 @@ Polynomial::Polynomial(const Polynomial &p)
 
 void Polynomial::deepCopy(const Polynomial &p){
         degree = p.degree;
-        delete[] coefficients;
+        if (coefficients){
+            delete[] coefficients;
+        }
         coefficients = new double[degree + 1];
         if (p.coefficients){
             for (int i = 0; i <= degree; ++i) {
@@ -26,7 +28,7 @@ void Polynomial::deepCopy(const Polynomial &p){
 }
 
 Polynomial::~Polynomial() {
-    delete coefficients;
+    delete[] coefficients;
 }
 
 Polynomial& Polynomial::operator=(const Polynomial &p){
