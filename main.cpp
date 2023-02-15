@@ -48,8 +48,8 @@ int main(){
         case 4:
             std::cout << "Enter value of x: ";
             std::cin >> x;
-            std::cout << p1 << "First polynom evaluated at " << x << " = " << p1.evaluate(x) << '\n';
-            std::cout << p1 << "Second polynom evaluated at " << x << " = " << p2.evaluate(x) << '\n';
+            std::cout << p1 << "First polynom evaluated at " << x << " = " << p1(x) << '\n';
+            std::cout << p1 << "Second polynom evaluated at " << x << " = " << p2(x) << '\n';
             break;
         case 5:
             break;

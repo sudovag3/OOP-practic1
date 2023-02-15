@@ -7,11 +7,14 @@
 class Polynomial {
 public:
     Polynomial(int degree, double coefficients[]);
+    Polynomial(const Polynomial &p);
     ~Polynomial();
-    double evaluate(double x);
+    void deepCopy(const Polynomial &p);
     Polynomial operator+(const Polynomial& other);
     Polynomial operator-(const Polynomial& other);
     Polynomial operator*(const Polynomial& other);
+    Polynomial& operator =(const Polynomial &polynomial);
+    double operator()(double x);
     friend std::ostream& operator<<(std::ostream& out, const Polynomial& p);
 
 private:

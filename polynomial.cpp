@@ -7,11 +7,38 @@ Polynomial::Polynomial(int degree, double coefficients[])
     }
 }
 
+Polynomial::Polynomial(const Polynomial &p)
+    {
+        deepCopy(p);
+    }
+
+void Polynomial::deepCopy(const Polynomial &p){
+        degree = p.degree;
+        delete[] coefficients;
+        coefficients = new double[degree + 1];
+        if (p.coefficients){
+            for (int i = 0; i <= degree; ++i) {
+                coefficients[i] = p.coefficients[i];
+            }
+        } else {
+            coefficients = nullptr;
+        }
+}
+
 Polynomial::~Polynomial() {
     delete coefficients;
 }
 
-double Polynomial::evaluate(double x) {
+Polynomial& Polynomial::operator=(const Polynomial &p){
+    if (this != &p){
+        deepCopy(p);
+    }
+
+    return *this;
+}
+
+double Polynomial::operator()(double x)
+{
     double result = 0;
     for (int i = degree; i >= 0; --i) {
         result = result * x + coefficients[i];
