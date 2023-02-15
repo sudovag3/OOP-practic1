@@ -7,6 +7,10 @@ Polynomial::Polynomial(int degree, double coefficients[])
     }
 }
 
+Polynomial::~Polynomial() {
+    delete coefficients;
+}
+
 double Polynomial::evaluate(double x) {
     double result = 0;
     for (int i = degree; i >= 0; --i) {

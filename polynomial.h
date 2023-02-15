@@ -7,6 +7,7 @@
 class Polynomial {
 public:
     Polynomial(int degree, double coefficients[]);
+    ~Polynomial();
     double evaluate(double x);
     Polynomial operator+(const Polynomial& other);
     Polynomial operator-(const Polynomial& other);
