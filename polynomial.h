@@ -6,7 +6,7 @@
 
 class Polynomial {
 public:
-    Polynomial(int degree, double coefficients[]);
+    Polynomial(int degree, double coefficients_[]);
     Polynomial(const Polynomial &p);
     ~Polynomial();
     void deepCopy(const Polynomial &p);

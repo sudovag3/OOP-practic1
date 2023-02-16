@@ -1,9 +1,9 @@
 #include "polynomial.h"
 
-Polynomial::Polynomial(int degree, double coefficients[])
+Polynomial::Polynomial(int degree, double coefficients_[])
     : degree(degree), coefficients(new double[degree + 1]) {
     for (int i = 0; i <= degree; ++i) {
-        this->coefficients[i] = coefficients[i];
+        this->coefficients[i] = coefficients_[i];
     }
 }
 
@@ -62,7 +62,9 @@ Polynomial Polynomial::operator+(const Polynomial& other) {
     for (int i = 0; i <= other.degree; ++i) {
         new_coefficients[i] += other.coefficients[i];
     }
-    return Polynomial(new_degree, new_coefficients);
+    Polynomial result(new_degree, new_coefficients);
+    delete[] new_coefficients;
+    return result;
 }
 
 Polynomial Polynomial::operator-(const Polynomial& other) {
@@ -81,7 +83,9 @@ Polynomial Polynomial::operator-(const Polynomial& other) {
         new_coefficients[i] -= other.coefficients[i];
     }
     // Возвращаем разность
-    return Polynomial(new_degree, new_coefficients);
+    Polynomial result(new_degree, new_coefficients);
+    delete[] new_coefficients;
+    return result;
 }
 
 Polynomial Polynomial::operator*(const Polynomial& other) {
@@ -97,15 +101,19 @@ Polynomial Polynomial::operator*(const Polynomial& other) {
             new_coefficients[i + j] += coefficients[i] * other.coefficients[j];
                 }
             }
-        return Polynomial(new_degree, new_coefficients);
+            Polynomial result(new_degree, new_coefficients);
+            delete[] new_coefficients;
+            return result;
     }
+
+
 
 //Перегружаем оператор << для вывода
 std::ostream& operator<<(std::ostream& out, const Polynomial& p) {
     for (int i = p.degree; i >= 0; --i) {
-        out << p.coefficients[i];
+        out << std::showpos << p.coefficients[i];
         if (i > 0) {
-            out << "x^" << i << " + ";
+            out << "x^" << i;
             }
         }
         return out;
