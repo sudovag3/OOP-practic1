@@ -9,12 +9,12 @@ Polynomial::Polynomial(int degree, double coefficients_[])
 
 Polynomial::Polynomial(const Polynomial &p)
     {
-        deepCopy(p);
+        deepCopy(p, true);
     }
 
-void Polynomial::deepCopy(const Polynomial &p){
+void Polynomial::deepCopy(const Polynomial &p, const bool costructor){
         degree = p.degree;
-        if (coefficients){
+        if (!costructor){
             delete[] coefficients;
         }
         coefficients = new double[degree + 1];
@@ -33,7 +33,7 @@ Polynomial::~Polynomial() {
 
 Polynomial& Polynomial::operator=(const Polynomial &p){
     if (this != &p){
-        deepCopy(p);
+        deepCopy(p, false);
     }
 
     return *this;

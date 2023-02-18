@@ -9,7 +9,7 @@ public:
     Polynomial(int degree, double coefficients_[]);
     Polynomial(const Polynomial &p);
     ~Polynomial();
-    void deepCopy(const Polynomial &p);
+    void deepCopy(const Polynomial &p, const bool costructor);
     Polynomial operator+(const Polynomial& other);
     Polynomial operator-(const Polynomial& other);
     Polynomial operator*(const Polynomial& other);
